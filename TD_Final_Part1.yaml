@@ -37,7 +37,7 @@ paths:
                 $ref: '#/components/schemas/CreateCompetition'
       responses:
         '200':
-          description: A list of food without id
+          description: A list of competition
           content:
             application/json:
               schema:
