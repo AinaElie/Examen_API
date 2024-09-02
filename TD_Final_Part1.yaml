@@ -59,6 +59,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Player'
+    post:
+      tags:
+        - Player
+      summary: create player
+      operationId: createPlayer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreatePlayer'
+      responses:
+        '200':
+          description: A list of player
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
   /Team:
     get:
       tags:
@@ -68,6 +89,27 @@ paths:
       responses:
         200:
           description: List of team
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+    post:
+      tags:
+        - Team
+      summary: create team
+      operationId: createTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateTeam'
+      responses:
+        '200':
+          description: A list of team
           content:
             application/json:
               schema:
@@ -90,6 +132,10 @@ components:
           type: string
     Player:
       type: object
+      allOf:
+        - $ref: '#/components/schemas/CreatePlayer'
+    CreatePlayer:
+      type: object
       properties:
         name:
           type: string
@@ -98,11 +144,8 @@ components:
         strongFoot:
           type: string
     Team:
+      type: object
       properties:
-        name:
-          type: string
-        slogan:
-          type: string
         ListCompetition:
           type: array
           items:
@@ -111,3 +154,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Player'
+      allOf:
+        - $ref: '#/components/schemas/CreateTeam'
+    CreateTeam:
+      properties:
+        name:
+          type: string
+        slogan:
+          type: string
