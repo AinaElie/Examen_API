@@ -44,9 +44,40 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Competition'
+  /Player:
+    get:
+      tags:
+        - Player
+      summary: Get all player
+      operationId: getAllPlayer
+      responses:
+        200:
+          description: List of player
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+  /Team:
+    get:
+      tags:
+        - Team
+      summary: Get all team
+      operationId: getAllTeam
+      responses:
+        200:
+          description: List of team
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
 components:
   schemas:
     Competition:
+      type: object
       allOf:
         - $ref: '#/components/schemas/CreateCompetition'
     CreateCompetition:
@@ -57,3 +88,26 @@ components:
           type: string
         country:
           type: string
+    Player:
+      type: object
+      properties:
+        name:
+          type: string
+        number:
+          type: integer
+        strongFoot:
+          type: string
+    Team:
+      properties:
+        name:
+          type: string
+        slogan:
+          type: string
+        ListCompetition:
+          type: array
+          items:
+            $ref: '#/components/schemas/Competition'
+        ListPlayer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player'
