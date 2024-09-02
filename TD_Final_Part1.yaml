@@ -1,0 +1,59 @@
+openapi: 3.0.3
+
+info:
+  title: TD Final Part 1
+  description: TD Final Part 1
+  version: 1.0.0
+
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /Competition:
+    get:
+      tags:
+        - Competition
+      summary: Get all competition
+      operationId: getAllCompetition
+      responses:
+        200:
+          description: List of competition
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+    post:
+      tags:
+        - Competition
+      summary: create competition
+      operationId: createCompetition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateCompetition'
+      responses:
+        '200':
+          description: A list of food without id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+components:
+  schemas:
+    Competition:
+      allOf:
+        - $ref: '#/components/schemas/CreateCompetition'
+    CreateCompetition:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        country:
+          type: string
